@@ -20,7 +20,6 @@ set autoindent
 
 " UI Layout {{{
 set number              " show line numbers
-colorscheme darkblue
 
 set termguicolors
 set showcmd             " show command in bottom bar
@@ -42,6 +41,17 @@ Plug 'Townk/vim-autoclose'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vividchalk'
 Plug 'scrooloose/nerdtree'
+
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Code and files fuzzy finder
+" Plug 'ctrlpvim/ctrlp.vim'
+" Extension to ctrlp, for fuzzy command finder
+" Plug 'fisadev/vim-ctrlp-cmdpalette'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 "-------------------=== Python  ===-----------------------------
 Plug 'python-mode/python-mode'                   " Python mode (docs, refactor, lints...)
@@ -99,9 +109,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gV `[v`]
 :imap ii <Esc>
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 " }}}
 
 " Don't use Ex mode, use Q for formatting
@@ -120,11 +131,34 @@ set hlsearch
 " I like highlighting strings inside C comments.
 let c_comment_strings=1
 
+"  Map Leader to
+let mapleader=','
+
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'textwidth' set to 72,
 " 'cindent' is on in C files, etc.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
+
+" Airline ------------------------------
+
+let g:airline_powerline_fonts = 0
+let g:airline_theme = 'bubblegum'
+let g:airline#extensions#whitespace#enabled = 0
+
+" to use fancy symbols for airline, uncomment the following lines and use a
+" patched font (more info on docs/fancy_symbols.rst)
+"if !exists('g:airline_symbols')
+   "let g:airline_symbols = {}
+"endif
+"let g:airline_left_sep = '⮀'
+"let g:airline_left_alt_sep = '⮁'
+"let g:airline_right_sep = '⮂'
+"let g:airline_right_alt_sep = '⮃'
+"let g:airline_symbols.branch = '⭠'
+"let g:airline_symbols.readonly = '⭤'
+"let g:airline_symbols.linenr = '⭡'
+
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
